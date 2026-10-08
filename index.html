@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #1a1a1a;
+      color: #f2f2f2;
+      padding: 40px 16px;
+    }
+    .tienda {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th {
+      text-align: left;
+      color: #9a9a9a;
+      font-weight: 600;
+      padding: 12px 8px;
+      border-bottom: 1px solid #333;
+    }
+    td {
+      padding: 14px 8px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .precio {
+      text-align: right;
+    }
+    tr.producto {
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    tr.producto:hover {
+      background: #252525;
+    }
+    .mensaje {
+      text-align: center;
+      color: #9a9a9a;
+    }
+  </style>
+</head>
+<body>
+  <div class="tienda">
+    <table>
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>GB</th>
+          <th>Condición</th>
+          <th class="precio">Precio</th>
+        </tr>
+      </thead>
+      <tbody id="productos"></tbody>
+    </table>
+    <p class="mensaje" id="mensaje"></p>
+  </div>
+
+  <script>
+    fetch('productos.json')
+      .then(r => r.json())
+      .then(productos => {
+        const cuerpo = document.getElementById('productos');
+        const visibles = productos.filter(p => p.visible);
+
+        visibles.forEach(p => {
+          const tr = document.createElement('tr');
+          tr.className = 'producto';
+          tr.onclick = () => window.open(p.url, '_blank');
+          tr.innerHTML = `
+            <td>${p.modelo}</td>
+            <td>${p.gb}</td>
+            <td>${p.condicion}</td>
+            <td class="precio">${p.precio}</td>`;
+          cuerpo.appendChild(tr);
+        });
+
+        if (visibles.length === 0) {
+          document.getElementById('mensaje').textContent = 'Próximamente nuevos productos.';
+        }
+      })
+      .catch(() => {
+        document.getElementById('mensaje').textContent = 'No se pudo cargar el catálogo.';
+      });
+  </script>
+</body>
+</html>
