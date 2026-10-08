@@ -8,5 +8,6 @@
   { "modelo": "17 Pro eSIM", "gb": "256", "condicion": "Grado A", "precio": "$58,995", "visible": true },
   { "modelo": "17 Pro eSIM", "gb": "256", "condicion": "Grado A-", "precio": "$57,995", "visible": true },
   { "modelo": "17 eSIM", "gb": "256", "condicion": "Como Nuevo", "precio": "$45,995", "visible": true },
-  { "modelo": "16 Pro Max eSIM", "gb": "256", "condicion": "Grado A", "precio": "$45,995", "visible": true }
+  { "modelo": "16 Pro Max eSIM", "gb": "256", "condicion": "Grado A", "precio": "$45,995", "visible": false }
+  { "modelo": "20 Pro Max eSIM", "gb": "512", "condicion": "Nuevo", "precio": "$200,995", "visible": true }
 ]
